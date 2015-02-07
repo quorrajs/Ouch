@@ -24,5 +24,8 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/quorrajs/Ouch/issues"
+  },
+  "dependencies": {
+    "stack-trace": "0.0.9"
   }
 }
