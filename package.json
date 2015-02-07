@@ -1,0 +1,28 @@
+{
+  "name": "ouch",
+  "version": "0.0.1",
+  "description": "Javascript error handling for cool kids",
+  "main": "Ouch.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node Ouch.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quorrajs/Ouch"
+  },
+  "keywords": [
+    "error",
+    "handler",
+    "exception",
+    "pretty",
+    "ouch",
+    "beautify",
+    "whoops"
+  ],
+  "author": "Harish Anchu <harishanchu@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/quorrajs/Ouch/issues"
+  }
+}
