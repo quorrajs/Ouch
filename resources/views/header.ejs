@@ -1,0 +1,13 @@
+<div class="exception">
+    <h3 class="exc-title">
+        <span class="exc-title-primary"><%= name %></span>
+        <% if (code){ %>
+        <span title="Exception Code">(<%= code %>)</span>
+        <% } %>
+        <button id="copy-button" class="clipboard" data-clipboard-target="plain-exception" title="copy exception into clipboard"></button>
+        <span id="plain-exception"><%= plainException %></span>
+    </h3>
+    <p class="exc-message">
+        <%= message %>
+    </p>
+</div>

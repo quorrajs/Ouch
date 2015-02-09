@@ -1,0 +1,53 @@
+<% /* List data-table values */ %>
+<div class="details">
+  <div class="data-table-container" id="data-tables">
+    <%
+    var label;
+    var data;
+    for(label in tables) {
+        if(tables.hasOwnProperty(label))
+        {
+            data = tables[label];
+        %>
+          <div class="data-table" id="sg-<%= tpl.slug(label) %>">
+            <label><%= label %></label>
+            <% if (!isEmpty(data)){ %>
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <td class="data-table-k">Key</td>
+                      <td class="data-table-v">Value</td>
+                    </tr>
+                  </thead>
+                <%  var k;
+                    var value;
+                    for (k in data){
+                        if(data.hasOwnProperty(k)) {
+                            value = data[k];
+                %>
+                  <tr>
+                    <td><%= k %></td>
+                    <td><%= typeof value === "object"? inspect(value): value %></td>
+                  </tr>
+                <%  }
+                } %>
+                </table>
+            <% } else { %>
+              <span class="empty">empty</span>
+            <% } %>
+          </div>
+    <%  }
+    } %>
+  </div>
+
+  <% /* List registered handlers, in order of first to last registered */ %>
+  <div class="data-table-container" id="handlers">
+    <label>Registered Handlers</label>
+    <% handlers.forEach(function(handler, i){ %>
+      <div class="handler <%- (handler === handler) ? 'active' : ''%>">
+        <%- i %>. <%= handler.constructor.name %>
+      </div>
+    <% }); %>
+  </div>
+
+</div>

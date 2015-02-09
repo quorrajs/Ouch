@@ -1,0 +1,19 @@
+<% frames.forEach(function(frame, i){
+    var className = frame.getFunctionName();
+    var methodName = frame.getMethodName();
+%>
+    <div class="frame<%- i==0?' active':'' %>" id="frame-line-<%= i %>">
+        <div class="frame-method-info">
+            <span class="frame-index "><%- (frames.length - i - 1) %>.</span>
+
+            <span class="frame-class"><%= className ?(methodName?
+                        className.slice(0, className.length - methodName.length - 1): className) : '' %></span>
+            <span class="frame-function"><%= methodName ?methodName : '<#anonymous>' %></span>
+        </div>
+
+        <span class="frame-file">
+          <%- (frame.getFileName() ?frame.getFileName() : '<#unknown>') %>
+                <span class="frame-line"><%- frame.getLineNumber() %></span>
+        </span>
+    </div>
+<% }) %>

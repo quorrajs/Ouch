@@ -1,0 +1,55 @@
+<% /*Display a code block for all frames in the stack.*/ %>
+
+<div class="frame-code-container <% !hasFrames?'empty':'' %>">
+  <% frames.forEach(function(frame, i){ %>
+    <% var line = frame.getLineNumber() %>
+      <div class="frame-code <%- (i == 0 ) ? 'active' : '' %>" id="frame-code-<%- i %>">
+        <div class="frame-file">
+          <%
+              var filePath = frame.getFileName();
+              var editorHref = handler.getEditorHref(filePath, line);
+          %>
+          <% if (filePath && editorHref) { %>
+            Open:
+            <a href="<%- editorHref %>" class="editor-link">
+              <strong><%= filePath ?filePath : '<#unknown>' %></strong>
+            </a>
+          <% } else { %>
+            <strong><%= filePath ?filePath : '<#unknown>' %></strong>
+          <% } %>
+        </div>
+        <%
+          // Do nothing if there's no line to work off
+          if (line !== null) {
+
+          // the line is 1-indexed, we nab -1 where needed to account for this
+          var range = frame.getFileLines(line - 8, 10);
+
+          // getFileLines can return null if there is no source code
+          if (range) {
+            range = range.map(function (line) { return isEmpty(line) ? ' ' : line;});
+            var start = line-8>=0? line-7: 1;
+            var code  = range.join("\n");
+        %>
+            <pre class="code-block prettyprint linenums:<%- start %>"><%= code %></pre>
+          <% } else {%>
+            <pre class="code-block prettyprint">Unable to locate file source.</pre>
+          <% } %>
+        <% } %>
+
+        <%
+          // Append comments for this frame
+          var comments = frame.getComments();
+        %>
+        <div class="frame-comments <%- isEmpty(comments) ? 'empty' : '' %>">
+          <% comments.forEach(function(comment, commentNo){ %>
+            <div class="frame-comment" id="comment-<%- i + '-' + commentNo %>">
+                <span class="frame-comment-context"><%= comment.context %></span>
+                <%- tpl.escapeButPreserveUris(comment.comment) %>
+            </div>
+          <% }); %>
+        </div>
+
+      </div>
+  <% }) %>
+</div>
