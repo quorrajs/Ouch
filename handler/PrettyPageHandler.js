@@ -126,9 +126,9 @@ PrettyPageHandler.prototype.handle = function (next) {
         "inspect": inspect,
 
         "tables": {
-            "Server/Request Data": {},
-            "params": {},
-            "Cookies": {},
+            "Server/Request Data": this.__getServerAndRequestInfo(),
+            "params": this.__getRequestParams(),
+            "Cookies": this.__parseCookies(),
             //"Session": [],
             "Environment Variables": process.env
         }
@@ -249,5 +249,98 @@ PrettyPageHandler.prototype.__getResource = function (resource) {
     // If we got this far, nothing was found.
     throw new Error("Could not find resource " + resource + " in resource path.");
 };
+
+/**
+ * Parses cookies from request headers.
+ *
+ * @returns {Object}
+ */
+PrettyPageHandler.prototype.__parseCookies = function () {
+    var list = {};
+    if (this.__request !== null) {
+        var rc = this.__request.headers.cookie;
+
+        rc && rc.split(';').forEach(function (cookie) {
+            var parts = cookie.split('=');
+            list[parts.shift().trim()] = decodeURI(parts.join('='));
+        });
+    }
+
+    return list;
+};
+
+/**
+ * Returns query string data and request body if it exists from request object.
+ *
+ * @returns {Object}
+ */
+PrettyPageHandler.prototype.__getRequestParams = function () {
+    var params = {};
+
+    if (this.__request !== null) {
+        var url_parts = url.parse(this.__request.url, true);
+        params.queryStringData = url_parts.query;
+
+        if (this.__request.body) {
+            params.requestBody = this.__request.body;
+        }
+    }
+
+    return params;
+};
+
+/**
+ * Returns Object containing general information about running node server and request.
+ *
+ * @returns {Object}
+ */
+PrettyPageHandler.prototype.__getServerAndRequestInfo = function () {
+    var info = {};
+    if (this.__request !== null) {
+        var req = this.__request;
+        info = {
+            REMOTE_ADDR: (req.headers['x-forwarded-for'] || '').split(',')[0] || req.connection.remoteAddress,
+            REMOTE_PORT: req.connection.remotePort,
+            SERVER_SOFTWARE: 'NodeJS ' + process.versions.node + " " + os.type(),
+            SERVER_PROTOCOL: this.__getRequestProtocol() + "/" + req.httpVersion,
+            //@todo: replace with host servername
+            //SERVER_NAME: os.hostname(),
+            //SERVER_PORT: this.__request.socket.localPort,
+            REQUEST_URI: this.__request.url,
+            REQUEST_METHOD: this.__request.method,
+            SCRIPT_FILE: require.main.filename,
+            PATH_INFO: url.parse(this.__request.url).pathname,
+            QUERY_STRING: url.parse(this.__request.url).query,
+            HTTP_HOST: req.headers.host,
+            HTTP_CONNECTION: req.headers.connection,
+            HTTP_CACHE_CONTROL: req.headers['cache-control'],
+            HTTP_ACCEPT: req.headers.accept,
+            HTTP_USER_AGENT: req.headers['user-agent'],
+            HTTP_DNT: req.headers.dnt,
+            HTTP_ACCEPT_ENCODING: req.headers['accept-encoding'],
+            HTTP_ACCEPT_LANGUAGE: req.headers['accept-language'],
+            HTTP_COOKIE: req.headers.cookie
+        }
+    }
+
+    return info;
+};
+
+/**
+ * Returns request connection protocol.
+ *
+ * @returns {String}
+ */
+PrettyPageHandler.prototype.__getRequestProtocol = function () {
+    var proto = this.__request.connection.encrypted
+        ? 'https'
+        : 'http';
+
+    // Note: X-Forwarded-Proto is normally only ever a
+    //       single value, but this is to be safe.
+    proto = this.__request.headers['X-Forwarded-Proto'] || proto;
+    return proto.split(/\s*,\s*/)[0].toUpperCase();
+};
+
 
 module.exports = PrettyPageHandler;
