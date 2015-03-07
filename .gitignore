@@ -3,4 +3,5 @@ node_modules
 todo
 npm-debug.log
 .npmignore
+dev
 
