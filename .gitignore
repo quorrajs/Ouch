@@ -1,0 +1,5 @@
+.idea
+.npmignore
+dev
+node_modules
+todo
