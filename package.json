@@ -32,7 +32,7 @@
     "ejs": "^2.3.1",
     "escape-html": "^1.0.1",
     "lodash": "^3.3.1",
-    "stack-trace": "0.0.9"
+    "stack-trace": "git+https://github.com/harishanchu/node-stack-trace.git"
   },
   "devDependencies": {
     "mocha": "^2.2.0",
