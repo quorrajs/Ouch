@@ -15,11 +15,20 @@ Whoops, but implements similar functionality and uses same front end resources i
 error handler base/framework for NodeJs. Out-of-the-box, it provides a pretty error interface that helps you debug your
 web projects, but at heart it's a simple yet powerful stacked error handling system.
 
-## PrettyPageHandler demo
+### Pretty page handler demo
 
 [Blue theme](https://quorrajs.github.io/Ouch/demo/)
 
 [Orange theme](https://quorrajs.github.io/Ouch/demo/orange.html)
+
+##Installation
+
+The source is available for download from [GitHub](https://github.com/quorrajs/Ouch). Alternatively, you
+can install using Node Package Manager (npm):
+
+```javascript
+npm install ouch
+```
 
 ## Usage examples
 
@@ -43,18 +52,19 @@ web projects, but at heart it's a simple yet powerful stacked error handling sys
         });
         d.run(function(){
 
-                ....
-                ....
+            // your application code goes here
 
         });
 
     }).listen('1338', 'localhost');
 
-    // With custom handler
 
+    // With custom callback handler
     var ouchInstance = (new Ouch).pushHandler(function(next, exception, request, response){
-        ...
-        ...
+
+        // custom handler logic
+
+        next();
     });
 
     ouchInstance.handleException(e, req, res, function (output) {
@@ -62,6 +72,13 @@ web projects, but at heart it's a simple yet powerful stacked error handling sys
     });
 ```
 
+For more options, take a look at the [API Documentation](docs/) and the list of available handers below.
+
+### Available Handlers
+
+**Ouch** currently ships with the following built-in handlers, available in the `require("ouch").hanlers` namespace:
+
+- [`PrettyPageHandler`](https://github.com/quorrajs/Ouch/blob/master/handler/PrettyPageHandler.js) - Shows a pretty error page when something goes pants-up
 
 ## Todo
 
