@@ -3,6 +3,9 @@ Ouch
 
 NodeJS errors for cool kids
 
+[![npm version](https://badge.fury.io/js/ouch.svg)](http://badge.fury.io/js/ouch)
+[![Build Status](https://travis-ci.org/quorrajs/Ouch.svg?branch=master)](https://travis-ci.org/quorrajs/Ouch)
+
 -----
 
 ![Ouch!](http://i.imgur.com/EPXL1Zq.png)
