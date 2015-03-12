@@ -15,7 +15,11 @@ Whoops, but implements similar functionality and uses same front end resources i
 error handler base/framework for NodeJs. Out-of-the-box, it provides a pretty error interface that helps you debug your
 web projects, but at heart it's a simple yet powerful stacked error handling system.
 
-[PrettyPageHandler demo](https://quorrajs.github.io/ouch/demo)
+## PrettyPageHandler demo
+
+[Blue theme](https://quorrajs.github.io/Ouch/demo/)
+
+[Orange theme](https://quorrajs.github.io/Ouch/demo/orange.html)
 
 ## Usage examples
 
