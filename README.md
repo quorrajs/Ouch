@@ -5,12 +5,13 @@ NodeJS errors for cool kids
 
 [![npm version](https://badge.fury.io/js/ouch.svg)](http://badge.fury.io/js/ouch)
 [![Build Status](https://travis-ci.org/quorrajs/Ouch.svg?branch=master)](https://travis-ci.org/quorrajs/Ouch)
+[![Documentation Status](https://readthedocs.org/projects/ouch/badge/?version=latest)](https://readthedocs.org/projects/ouch/?badge=latest)
 
 -----
 
 ![Ouch!](http://i.imgur.com/EPXL1Zq.png)
 
-**Ouch** is a NodeJS implementation of PHP's [Whoops](https://github.com/filp/whoops) library. It's not a exact port of
+**Ouch** is a NodeJS implementation of PHP's [Whoops](https://github.com/filp/whoops) library. It's not an exact port of
 Whoops, but implements similar functionality and uses same front end resources in some of its error handlers. It is an
 error handler base/framework for NodeJs. Out-of-the-box, it provides a pretty error interface that helps you debug your
 web projects, but at heart it's a simple yet powerful stacked error handling system.
@@ -45,7 +46,9 @@ npm install ouch
         var d = domain.create();
 
         d.on('error', function(e){
-            var ouchInstance = (new Ouch).pushHandler(new Ouch.handlers.PrettyPageHandler('orange', null, 'sublime'));
+            var ouchInstance = (new Ouch).pushHandler(
+                    new Ouch.handlers.PrettyPageHandler('orange', null, 'sublime')
+                );
             ouchInstance.handleException(e, req, res, function (output) {
                 console.log('Error handled properly')
             });
@@ -60,19 +63,20 @@ npm install ouch
 
 
     // With custom callback handler
-    var ouchInstance = (new Ouch).pushHandler(function(next, exception, request, response){
+    var ouchInstance = (new Ouch).pushHandler(
+        function(next, exception, request, response){
 
-        // custom handler logic
+            // custom handler logic
 
-        next();
-    });
+            next();
+        });
 
     ouchInstance.handleException(e, req, res, function (output) {
         console.log('Error handled properly')
     });
 ```
 
-For more options, take a look at the [API Documentation](docs/) and the list of available handers below.
+For more options, take a look at the [API Documentation](http://ouch.readthedocs.org/en/latest/) and the list of available handers below.
 
 ### Available Handlers
 
