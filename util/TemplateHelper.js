@@ -1,10 +1,10 @@
 /**
  * TemplateHelper
  *
- * @author: Harish Anchu <twitter:@harishanchu>
- * Copyright (c) 2015, Harish Anchu. All rights reserved.
+ * @author: Harish Anchu <harishanchu@gmail.com>
+ * @copyright 2015, Harish Anchu. All rights reserved.
+ * @license Licensed under MIT (https://github.com/quorrajs/Ouch/blob/master/LICENSE)
  */
-
 var util = require('util');
 var ejs = require('ejs');
 var fs = require('fs');
