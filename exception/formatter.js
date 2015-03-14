@@ -26,7 +26,46 @@ var formatter = {
             .replace(/  /g, ' &nbsp;') + '\n';
 
         return plain;
+    },
+    /**
+     * Returns all basic information about the exception in a simple array
+     * for further conversion to other languages
+     * @param  {Inspector} inspector
+     * @param  {boolean}   shouldAddTrace
+     * @return {Array}
+     */
+    formatExceptionAsDataArray: function (inspector, shouldAddTrace) {
+        var exception = inspector.getException();
+        var frames = inspector.getFrames();
+        var response = {
+            'type': inspector.getExceptionName(),
+            'message': inspector.getExceptionMessage(),
+            'file': frames[0].getFileName(),
+            'line': frames[0].getLineNumber()
+        };
+
+        if (shouldAddTrace) {
+            var frameData = [];
+
+            frames.forEach(function (frame) {
+                /** @var Frame frame */
+                var className = frame.getFunctionName();
+                var methodName = frame.getMethodName();
+                frameData.push({
+                    'file': frame.getFileName(),
+                    'line': frame.getLineNumber(),
+                    'function': methodName ? methodName : '<#anonymous>',
+                    'class': className ? (methodName ?
+                        className.slice(0, className.length - methodName.length - 1) : className) : ''
+                });
+            });
+
+            response['trace'] = frameData;
+        }
+
+        return response;
     }
+
 };
 
 module.exports = formatter;
