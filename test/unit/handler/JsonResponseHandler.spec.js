@@ -44,7 +44,7 @@ describe("JsonResponseHandler", function(){
                 // Check the field values:
                 response.error.type.should.be.equal('Error');
                 response.error.file.should.be.equal(__filename);
-                response.error.line.should.be.equal(39);
+                response.error.line.should.be.equal(37);
                 done();
             })
         });
