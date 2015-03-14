@@ -7,6 +7,7 @@
 
 ### Core Handlers:
 - [`ouch\handler\PrettyPageHandler`](#ouchhandlerprettypagehandler) - Outputs a detailed, fancy error page
+- [`ouch\handler\JsonResponseHandler`](#ouchhandlerjsonresponsehandler) - Formats errors and exceptions as a JSON payload
 
 # Core Classes
 
@@ -42,7 +43,8 @@ __getInspector(exception)
  #=> an instance of ouch\exception\Inspector
 
 // Handles an exception with the current stack. Provided callback will be executed
-// when once execution of error handlers completes with output from each handler as an array.
+// when once execution of error handlers completes or when one of the handler sends
+// quit signal with output from each handler as an array.
 handleException(exception, request, response, callback)
 ```
 
@@ -73,6 +75,13 @@ static property named handlers along with other default handlers for ease of acc
     module.exports = MyCustomHandler;
 
 ```
+### Static Properties
+
+```javascript
+// It is used to signal Ouch.handleException method from handler
+// to quit during exception handling.
+Handler.QUIT
+```
 
 ### Methods
 
@@ -90,9 +99,6 @@ setRun(ouch)
 
 // Sets the Inspector instance to the property __inspector
 setInspector(inspector)
-
-// Sets the Exception(to handle) to the property __exception
-setException(exception)
 
 // Sets the http request to the property __request
 setRequest(request)
@@ -119,6 +125,10 @@ getException()
 // Returns the string name of the exception being inspected
 getExceptionName()
  #=> string
+
+// Returns the string message of the exception being inspected
+getExceptionMessage()
+#=> string
 
 // Returns an array of CallSite objects generated from error stack
 // property with the help of node-stack-trace module for the
@@ -177,6 +187,38 @@ setEditor(function (file, line) { return string })
 // handler.addEditor('whatevs', 'whatevs://open?file=file://%file&line=%line')
 addEditor(editor, resolver)
 
-// error handle method
+// If sendResponse is true and http response object is set handle method will
+// send a pretty error page to the client and signal ouch to stop execution
+// of remaining handlers. If sendResponse is set to false or http response object
+// is empty pretty error page content will be passed to next callback without
+// signaling to quit the execution.
+handle(next)
+```
+
+## ouch\handler\JsonResponseHandler
+
+The `JsonResponseHandler`, upon receiving an exception to handle, simply constructs a JSON payload, and outputs it. Methods are available to control the detail of the output, and if it should only execute for AJAX and WantsJson requests - paired with another handler under it, such as the PrettyPageHandler, it allows you to have meaningful output for both regular and AJAX/WantsJson requests. Neat!
+
+```javascript
+// JsonResponseHandler accepts `onlyForAjaxOrJsonRequests`, `returnFrames`,
+// and `sendResponse` as it's arguments during instantiation.
+// @param onlyForAjaxOrJsonRequests is boolean which determines
+// whether to process errors of all request types or whether to process
+// errors from Ajax/WantsJson type request. It is set to false by default.
+//
+// @param returnFrames is boolean which determines whether to include
+// stack trace details object to the output. It is set to false by default.
+//
+// @param sendResponse is a boolean value which will determine whether handler response
+// should be sent as http response or not. It will be set to true when no value is provided.
+// It is set to true  by default.
+__construct(onlyForAjaxOrJsonRequests, returnFrames, sendResponse)
+ #=> JsonResponseHandler instance
+
+// If sendResponse is true and http response object is set handle method will
+// send a created JSON payload to the client and signal ouch to stop execution
+// of remaining handlers. If sendResponse is set to false or http response object
+// is empty created JSON payload content will be passed to next callback without
+// signaling to quit the execution.
 handle(next)
 ```

@@ -97,6 +97,37 @@ describe('Ouch main script', function(){
             });
         });
 
+        it("should execute upto a handler only if handler signal ouch to quit via next callback", function(done){
+            var ouch = getOuchInstance();
+            function StdErrHandler(){
+                StdErrHandler.super_.call(this)
+            }
+
+            util.inherits(StdErrHandler, Ouch.handlers.BaseHandler);
+
+            StdErrHandler.prototype.handle = function(next, e){
+                next("handle resp");
+            };
+
+            var stdHandlerInstance = new StdErrHandler();
+
+            sinon.spy(stdHandlerInstance, "handle");
+
+            var spyErrHandler = sinon.spy(function(next, e){
+                next("handle resp", Ouch.handlers.BaseHandler.QUIT);
+            });
+            var error = new Error('test');
+
+            ouch.pushHandler(spyErrHandler).pushHandler(stdHandlerInstance);
+
+            ouch.handleException(error, null, null, function(responses){
+                stdHandlerInstance.handle.calledOnce.should.not.be.ok;
+                spyErrHandler.calledOnce.should.be.ok;
+
+                done();
+            });
+        });
+
         it("should call handler methods setRun, setInspector, setRequest and setResponse handler is an instance of HandlerBase", function(){
             var ouch = getOuchInstance();
 

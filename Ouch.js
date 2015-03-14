@@ -8,6 +8,7 @@
 var Inspector = require('./exception/Inspector');
 var _ = require('lodash');
 var PrettyPageHandler = require('./handler/PrettyPageHandler');
+var JsonResponseHandler = require('./handler/JsonResponseHandler');
 var Handler = require('./handler/Handler');
 
 /**
@@ -30,7 +31,8 @@ function Ouch(handlerStack) {
  */
 Ouch.handlers = {
     BaseHandler: Handler,
-    PrettyPageHandler: PrettyPageHandler
+    PrettyPageHandler: PrettyPageHandler,
+    JsonResponseHandler: JsonResponseHandler
 };
 
 /**
@@ -114,8 +116,13 @@ Ouch.prototype.handleException = function (exception, request, response, CB) {
 
         function next(handleResponse) {
             output.push(handleResponse);
-            if (handlerStack.length) {
-                var handler = handlerStack.pop();
+
+            if ((arguments.length > 1 && arguments[1] === Handler.QUIT) || !handlerStack.length) {
+                if (CB) {
+                    CB(output.slice(1));
+                }
+            } else {
+                var handler = handlerStack.shift();
 
                 if (handler instanceof Handler) {
                     handler.setRun(self);
@@ -125,10 +132,6 @@ Ouch.prototype.handleException = function (exception, request, response, CB) {
                     handler.handle(next, exception);
                 } else {
                     handler(next, exception, request, response)
-                }
-            } else {
-                if (CB) {
-                    CB(output.slice(1));
                 }
             }
         }

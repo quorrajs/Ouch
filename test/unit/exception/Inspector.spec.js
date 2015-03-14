@@ -76,4 +76,17 @@ describe("Inspector", function(){
             done();
         })
     });
+
+    describe("#getExceptionMessage()", function(){
+        it("should return the message property of exception if present else empty string", function(done){
+            var err = new Error("Sample exception message foo");
+            var inspector = new Inspector(err);
+            inspector.getExceptionMessage().should.equal("Sample exception message foo");
+
+            err = new Error();
+            inspector = new Inspector(err);
+            inspector.getExceptionMessage().should.equal("");
+            done();
+        })
+    });
 });

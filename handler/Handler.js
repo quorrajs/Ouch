@@ -38,6 +38,8 @@ function Handler() {
     this.__response = null;
 }
 
+Handler.QUIT = 0x10;
+
 /**
  * Handles the error
  *
