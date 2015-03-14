@@ -70,4 +70,11 @@ Inspector.prototype.getExceptionName = function () {
     return this.__exception.name ? this.__exception.name : "Error thrown";
 };
 
+/**
+ * @returns {String}
+ */
+Inspector.prototype.getExceptionMessage = function () {
+    return this.__exception.message ? this.__exception.message : "";
+};
+
 module.exports = Inspector;
