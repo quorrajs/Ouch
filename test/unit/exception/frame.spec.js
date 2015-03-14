@@ -17,7 +17,7 @@ describe('frame', function () {
 
     describe("#getFileLines()", function () {
         it("should return content of specified line numbers of the stack frame file source", function (done) {
-            inspector.getFrames()[0].getFileLines(7, 1).should.containEql("/** do not move this comment from this location - used for testing**/");
+            inspector.getFrames()[0].getFileLines(8, 1).should.containEql("/** do not move this comment from this location - used for testing**/");
             done();
         });
     });
