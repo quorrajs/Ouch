@@ -58,10 +58,13 @@ function PrettyPageHandler(theme, pageTitle, editor, sendResponse) {
     this.__editor = editor;
 
     /**
-     * @var {boolean}
+     * Should Ouch push output directly to the client?
+     * If this is false, output will be passed to the callback
+     * provided to the handle method.
+     * @type {boolean}
      * @protected
      */
-    this.__sendResponse = sendResponse === undefined ? true : sendResponse;
+    this.__sendResponse = sendResponse === undefined ? true : Boolean(sendResponse);
 
     /**
      * A list of known editor strings
@@ -115,7 +118,7 @@ PrettyPageHandler.prototype.handle = function (next) {
 
         "title": this.__pageTitle,
         "name": inspector.getExceptionName(),
-        "message": inspector.getException().message || '',
+        "message": inspector.getExceptionMessage(),
         "code": code,
         "plainException": formatter.formatExceptionPlain(inspector),
         "frames": frames,
@@ -145,9 +148,11 @@ PrettyPageHandler.prototype.handle = function (next) {
         }
 
         this.__response.end(handlerResponse);
+        next(null, Handler.QUIT);
+    } else {
+        next(handlerResponse);
     }
 
-    next(handlerResponse);
 };
 
 /**

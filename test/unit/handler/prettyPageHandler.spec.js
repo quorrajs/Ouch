@@ -20,7 +20,6 @@ describe("PrettyPageHandler", function(){
            var ouch = new Ouch([new PrettyPageHandler()]);
             ouch.handleException(new Error("Test error foo"), null, null, function(response){
                 // Reached the end without errors
-                response[0].should.be.ok;
                 done();
             })
         });
