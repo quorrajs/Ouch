@@ -83,6 +83,7 @@ For more options, take a look at the [API Documentation](http://ouch.readthedocs
 **Ouch** currently ships with the following built-in handlers, available in the `require("ouch").hanlers` namespace:
 
 - [`PrettyPageHandler`](https://github.com/quorrajs/Ouch/blob/master/handler/PrettyPageHandler.js) - Shows a pretty error page when something goes pants-up
+- [`JsonResponseHandler`](https://github.com/quorrajs/Ouch/blob/master/handler/JsonResponseHandler.js) - Captures exceptions and returns information on them as a JSON string.
 
 ## Todo
 
