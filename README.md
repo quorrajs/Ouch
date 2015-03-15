@@ -76,14 +76,14 @@ npm install ouch
     });
 ```
 
-For more options, take a look at the [API Documentation](http://ouch.readthedocs.org/en/latest/) and the list of available handers below.
+For more options, For more options, have a look at the example files in examples to get a feel for how things work. Also take a look at the [API Documentation](http://ouch.readthedocs.org/en/latest/api-docs/) and the list of available handlers below.
 
 ### Available Handlers
 
-**Ouch** currently ships with the following built-in handlers, available in the `require("ouch").hanlers` namespace:
+**Ouch** currently ships with the following built-in handlers, available in the `require("ouch").handlers` namespace:
 
 - [`PrettyPageHandler`](https://github.com/quorrajs/Ouch/blob/master/handler/PrettyPageHandler.js) - Shows a pretty error page when something goes pants-up
-- [`JsonResponseHandler`](https://github.com/quorrajs/Ouch/blob/master/handler/JsonResponseHandler.js) - Captures exceptions and returns information on them as a JSON string.
+- [`JsonResponseHandler`](https://github.com/quorrajs/Ouch/blob/master/handler/JsonResponseHandler.js) - Process errors and returns information on them as a JSON string.
 
 ## Todo
 
