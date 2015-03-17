@@ -144,7 +144,7 @@ PrettyPageHandler.prototype.handle = function (next) {
 
     if (this.__response && this.__sendResponse) {
         if (!this.__response.headersSent) {
-            this.__response.setHeader('Content-Type: text/html');
+            this.__response.setHeader("Content-Type", "text/html");
             this.__response.writeHead(code);
         }
 
