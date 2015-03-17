@@ -76,7 +76,7 @@ npm install ouch
     });
 ```
 
-For more options, For more options, have a look at the example files in examples to get a feel for how things work. Also take a look at the [API Documentation](http://ouch.readthedocs.org/en/latest/api-docs/) and the list of available handlers below.
+For more options, have a look at the example files in examples to get a feel for how things work. Also take a look at the [API Documentation](http://ouch.readthedocs.org/en/latest/api-docs/) and the list of available handlers below.
 
 ### Available Handlers
 
