@@ -83,6 +83,8 @@ function frame(frame) {
                         if (!fs.existsSync(filePath)) {
                             return null;
                         }
+                    } else {
+                        return null;
                     }
                 }
 
