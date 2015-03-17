@@ -86,7 +86,11 @@ function frame(frame) {
                     }
                 }
 
-                this.__fileContentsCache = fs.readFileSync(filePath, 'utf-8');
+                try {
+                    this.__fileContentsCache = fs.readFileSync(filePath, 'utf-8');
+                } catch (e) {
+                    this.__fileContentsCache = '';
+                }
             }
 
             return this.__fileContentsCache;
@@ -135,4 +139,3 @@ function frame(frame) {
 }
 
 module.exports = frame;
-
