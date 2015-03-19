@@ -9,6 +9,7 @@
 var sinon = require('sinon');
 var util = require("util");
 var Ouch = require('../../Ouch');
+var Inspector = require('../../exception/Inspector');
 
 describe('Ouch main script', function(){
 
@@ -31,7 +32,7 @@ describe('Ouch main script', function(){
             done();
         });
 
-        it("should return an non empty array when handlers are present", function(done){
+        it("should return a non empty array when handlers are present", function(done){
             getOuchInstance().pushHandler(function(){}).getHandlers().should.be.an.Array.length(1);
             done();
         })
@@ -57,6 +58,10 @@ describe('Ouch main script', function(){
     });
 
     describe("handleException", function(){
+
+        /**
+         * @covers CallbackHandler
+         */
         it("should execute all the registered handlers and finally execute provided callback", function(done){
             var ouch = getOuchInstance();
             function StdErrHandler(){
@@ -73,23 +78,26 @@ describe('Ouch main script', function(){
 
             sinon.spy(stdHandlerInstance, "handle");
 
-            var spyErrHandler = sinon.spy(function(next, e){
+            var callbackHandler = sinon.spy(function(next, exception, inspector, run, req, res){
                 next("handle resp");
             });
             var error = new Error('test');
 
-            ouch.pushHandler(spyErrHandler).pushHandler(stdHandlerInstance);
+            ouch.pushHandler(callbackHandler).pushHandler(stdHandlerInstance);
 
             ouch.handleException(error, null, null, function(responses){
                 stdHandlerInstance.handle.calledOnce.should.be.ok;
-                spyErrHandler.calledOnce.should.be.ok;
+                callbackHandler.calledOnce.should.be.ok;
 
                 var spyCall;
                 spyCall = stdHandlerInstance.handle.getCall(0);
-                spyCall.args[1].should.be.equal(error);
+                spyCall.args[0].should.be.a.function;
 
-                spyCall = spyErrHandler.getCall(0);
+                spyCall = callbackHandler.getCall(0);
+                spyCall.args[0].should.be.a.function;
                 spyCall.args[1].should.be.equal(error);
+                spyCall.args[2].should.be.an.instanceOf(Inspector);
+                spyCall.args[3].should.be.an.instanceOf(Ouch);
 
                 responses.should.be.eql(["handle resp", "handle resp"]);
 

@@ -62,9 +62,9 @@ npm install ouch
     }).listen('1338', 'localhost');
 
 
-    // With custom callback handler
+    // With custom callback
     var ouchInstance = (new Ouch).pushHandler(
-        function(next, exception, request, response){
+        function(next, exception, inspector, run, request, response){
 
             // custom handler logic
 
@@ -84,6 +84,7 @@ For more options, have a look at the example files in examples to get a feel for
 
 - [`PrettyPageHandler`](https://github.com/quorrajs/Ouch/blob/master/handler/PrettyPageHandler.js) - Shows a pretty error page when something goes pants-up
 - [`JsonResponseHandler`](https://github.com/quorrajs/Ouch/blob/master/handler/JsonResponseHandler.js) - Process errors and returns information on them as a JSON string.
+- [`CallbackHandler`](https://github.com/quorrajs/Ouch/blob/master/handler/CallbackHandler.js) - Wraps a callable as a handler. You do not need to use this handler explicitly, Ouch will automatically wrap any callable you pass to `ouchInstance.pushHandler`.
 
 ## Todo
 

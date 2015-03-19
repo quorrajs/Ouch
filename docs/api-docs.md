@@ -6,6 +6,7 @@
 - [`ouch\exception\Inspector`](#ouchexceptioninspector) - Exposes methods to inspect an exception
 
 ### Core Handlers:
+- [`ouch\handler\CallbackHandler`](#ouchhandlercallbackhandler) - Wraps callables as handlers
 - [`ouch\handler\PrettyPageHandler`](#ouchhandlerprettypagehandler) - Outputs a detailed, fancy error page
 - [`ouch\handler\JsonResponseHandler`](#ouchhandlerjsonresponsehandler) - Formats errors and exceptions as a JSON payload
 
@@ -105,6 +106,9 @@ setRequest(request)
 
 // Sets the http response to the property __response
 setResponse(Response)
+
+// returns the output from `inspector.getException()`
+getException()
 ```
 
 ## ouch\exception\Inspector
@@ -138,6 +142,30 @@ getFrames()
 ```
 
 # Core Handlers
+
+## ouch\handler\CallbackHandler
+The CallbackHandler handler wraps regular callbacks as valid handlers. Useful for quick prototypes or simple handlers. When you pass a closure to `ouchInstance.pushHandler`, it's automatically converted to a CallbackHandler instance
+
+```javascript
+
+ouchInstance.pushHandler(function(next, exception, inspector, run, req, res) {
+    console.log(inspector.getExceptionName());
+    next();
+});
+
+ouchInstance.popHandler() // #=> ouch\handler\CallbackHandler
+```
+
+### Methods
+
+```javascript
+// Accepts any valid callback function
+__construct(callable)
+
+// executes callable set during handler instantiation with arguments
+// exception, inspector, run, request and response.
+handle(next)
+```
 
 ## ouch\handler\PrettyPageHandler
 

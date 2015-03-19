@@ -81,4 +81,12 @@ Handler.prototype.setResponse = function (response) {
     return this;
 };
 
+/**
+ * @param {Object} inspector
+ * @return {*} exception
+ */
+Handler.prototype.getException = function (inspector) {
+    return this.__inspector.getException();
+};
+
 module.exports = Handler;

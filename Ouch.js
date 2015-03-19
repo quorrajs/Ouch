@@ -11,6 +11,7 @@ var _ = require('lodash');
 var PrettyPageHandler = require('./handler/PrettyPageHandler');
 var JsonResponseHandler = require('./handler/JsonResponseHandler');
 var Handler = require('./handler/Handler');
+var CallbackHandler = require('./handler/CallbackHandler');
 
 /**
  * @param {Array} handlerStack
@@ -32,6 +33,7 @@ function Ouch(handlerStack) {
  */
 Ouch.handlers = {
     BaseHandler: Handler,
+    CallbackHandler: CallbackHandler,
     PrettyPageHandler: PrettyPageHandler,
     JsonResponseHandler: JsonResponseHandler
 };
@@ -53,11 +55,14 @@ Ouch.prototype.getHandlers = function () {
  * @returns {Ouch}
  */
 Ouch.prototype.pushHandler = function (handler) {
-    if (_.isFunction(handler) || _.isFunction(handler.handle)) {
-        this.__handlerStack.push(handler);
-    } else {
-        throw new TypeError("Argument must be a callable, or object should have method 'handle'")
+    if (_.isFunction(handler)){
+        handler = new CallbackHandler(handler)
+    }  else if(!(handler instanceof Handler)) {
+        throw new TypeError("Argument must be a callable, or should be an instance of 'CallbackHandler'")
     }
+
+    this.__handlerStack.push(handler);
+
     return this;
 };
 
@@ -125,15 +130,11 @@ Ouch.prototype.handleException = function (exception, request, response, CB) {
             } else {
                 var handler = handlerStack.shift();
 
-                if (handler instanceof Handler) {
-                    handler.setRun(self);
-                    handler.setInspector(inspector);
-                    handler.setRequest(request);
-                    handler.setResponse(response);
-                    handler.handle(next, exception);
-                } else {
-                    handler(next, exception, request, response)
-                }
+                handler.setRun(self);
+                handler.setInspector(inspector);
+                handler.setRequest(request);
+                handler.setResponse(response);
+                handler.handle(next);
             }
         }
 
