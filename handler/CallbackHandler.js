@@ -19,7 +19,7 @@ var util = require('util');
  * @constructor
  * @throws TypeError if argument is not callable
  */
-function CallbackHandler(callable){
+function CallbackHandler(callable) {
     CallbackHandler.super_.call(this);
 
     if (!_.isFunction(callable)) {
@@ -36,7 +36,7 @@ util.inherits(CallbackHandler, Handler);
 /**
  * @param next
  */
-CallbackHandler.prototype.handle = function(next){
+CallbackHandler.prototype.handle = function (next) {
     this.__callable.call(null, next, this.getException(), this.__inspector, this.__run,
         this.__request, this.__response);
 };
