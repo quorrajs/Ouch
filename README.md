@@ -5,6 +5,7 @@ NodeJS errors for cool kids
 
 [![npm version](https://badge.fury.io/js/ouch.svg)](http://badge.fury.io/js/ouch)
 [![Build Status](https://travis-ci.org/quorrajs/Ouch.svg?branch=master)](https://travis-ci.org/quorrajs/Ouch)
+[![Quality](https://codeclimate.com/github/quorrajs/Ouch/badges/gpa.svg)](https://codeclimate.com/github/quorrajs/Ouch)
 [![Documentation Status](https://readthedocs.org/projects/ouch/badge/?version=latest)](https://readthedocs.org/projects/ouch/?badge=latest)
 
 -----
