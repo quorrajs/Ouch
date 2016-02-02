@@ -90,3 +90,7 @@ For more options, have a look at the example files in examples to get a feel for
 ## Todo
 
     - Add more handlers.
+
+## License
+
+Ouch is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
