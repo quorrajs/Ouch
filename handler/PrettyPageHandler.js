@@ -94,6 +94,7 @@ PrettyPageHandler.prototype.handle = function (next) {
     var templateFile = this.__getResource("views/layout.ejs");
     var cssFile = this.__getResource("css/ouch." + this.__theme + ".css");
     var zeptoFile = this.__getResource("js/zepto.min.js");
+    var clipBoardFile = this.__getResource("js/clipboard.js");
     var jsFile = this.__getResource("js/ouch.base.js");
 
 
@@ -108,6 +109,7 @@ PrettyPageHandler.prototype.handle = function (next) {
         "stylesheet": fs.readFileSync(cssFile),
         "zepto": fs.readFileSync(zeptoFile),
         "javascript": fs.readFileSync(jsFile),
+        "clipboard": fs.readFileSync(clipBoardFile),
 
         // Template paths:
         "header": this.__getResource("views/header.ejs"),

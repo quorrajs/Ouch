@@ -12,13 +12,15 @@
     <div class="Ouch container">
 
       <div class="stack-container">
-        <div class="frames-container cf<%- !hasFrames?' empty':'' %>">
-            <%- include(frameList) %>
-        </div>
-        <div class="details-container cf <%- !hasFrames?' frameEmpty':'' %>">
+        <div class="left-panel">
           <header>
               <%- include(header) %>
           </header>
+          <div class="frames-container cf<%- !hasFrames?' empty':'' %>">
+              <%- include(frameList) %>
+          </div>
+        </div>
+        <div class="details-container cf <%- !hasFrames?' frameEmpty':'' %>">
           <%- include(frameCode) %>
           <%- include(envDetails) %>
         </div>
@@ -28,6 +30,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/1.3.5/ZeroClipboard.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.js"></script>
     <script><%- zepto %></script>
+    <script><%- clipboard %></script>
     <script><%- javascript %></script>
   </body>
 </html>
