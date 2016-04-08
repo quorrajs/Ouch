@@ -1,14 +1,11 @@
 Ouch
 ====
 
-NodeJS errors for cool kids
+*** DISCLAIMER
 
-[![npm version](https://badge.fury.io/js/ouch.svg)](http://badge.fury.io/js/ouch)
-[![Build Status](https://travis-ci.org/quorrajs/Ouch.svg?branch=master)](https://travis-ci.org/quorrajs/Ouch)
-[![Quality](https://codeclimate.com/github/quorrajs/Ouch/badges/gpa.svg)](https://codeclimate.com/github/quorrajs/Ouch)
-[![Documentation Status](https://readthedocs.org/projects/ouch/badge/?version=latest)](https://readthedocs.org/projects/ouch/?badge=latest)
+This is a fork of [ouch](https://github.com/quorrajs/Ouch). The guy is longer maintaining the original repo, this repo contains the updated resources to match [Whoops](https://github.com/filp/whoops) latest update.
 
------
+> NodeJS errors for cool kids
 
 ![Ouch!](http://i.imgur.com/EPXL1Zq.png)
 
@@ -17,19 +14,13 @@ Whoops, but implements similar functionality and uses same front end resources i
 error handler base/framework for NodeJs. Out-of-the-box, it provides a pretty error interface that helps you debug your
 web projects, but at heart it's a simple yet powerful stacked error handling system.
 
-### Pretty page handler demo
-
-[Blue theme](https://quorrajs.github.io/Ouch/demo/)
-
-[Orange theme](https://quorrajs.github.io/Ouch/demo/orange.html)
-
 ##Installation
 
-The source is available for download from [GitHub](https://github.com/quorrajs/Ouch). Alternatively, you
+The source is available for download from [GitHub](https://github.com/thetutlage/Ouch). Alternatively, you
 can install using Node Package Manager (npm):
 
 ```javascript
-npm install ouch
+npm install youch
 ```
 
 ## Usage examples
@@ -83,9 +74,9 @@ For more options, have a look at the example files in examples to get a feel for
 
 **Ouch** currently ships with the following built-in handlers, available in the `require("ouch").handlers` namespace:
 
-- [`PrettyPageHandler`](https://github.com/quorrajs/Ouch/blob/master/handler/PrettyPageHandler.js) - Shows a pretty error page when something goes pants-up
-- [`JsonResponseHandler`](https://github.com/quorrajs/Ouch/blob/master/handler/JsonResponseHandler.js) - Process errors and returns information on them as a JSON string.
-- [`CallbackHandler`](https://github.com/quorrajs/Ouch/blob/master/handler/CallbackHandler.js) - Wraps a callable as a handler. You do not need to use this handler explicitly, Ouch will automatically wrap any callable you pass to `ouchInstance.pushHandler`.
+- [`PrettyPageHandler`](https://github.com/thetutlage/Ouch/blob/master/handler/PrettyPageHandler.js) - Shows a pretty error page when something goes pants-up
+- [`JsonResponseHandler`](https://github.com/thetutlage/Ouch/blob/master/handler/JsonResponseHandler.js) - Process errors and returns information on them as a JSON string.
+- [`CallbackHandler`](https://github.com/thetutlage/Ouch/blob/master/handler/CallbackHandler.js) - Wraps a callable as a handler. You do not need to use this handler explicitly, Ouch will automatically wrap any callable you pass to `ouchInstance.pushHandler`.
 
 ## Todo
 

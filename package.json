@@ -1,15 +1,11 @@
 {
-  "name": "ouch",
-  "version": "0.2.0-beta",
-  "description": "Javascript error handling for cool kids",
+  "name": "youch",
+  "version": "1.0.0",
+  "description": "Javascript error handling for cool kids - since ouch is no more active",
   "main": "Ouch.js",
   "scripts": {
     "test": "mocha",
     "start": "node Ouch.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/quorrajs/Ouch"
   },
   "keywords": [
     "error",
@@ -20,13 +16,10 @@
     "beautify",
     "whoops"
   ],
-  "author": "Harish Anchu <harishanchu@gmail.com>",
+  "author": "adonisjs, amanvirk",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/quorrajs/Ouch/issues"
-  },
-  "engines": {
-    "node": ">=0.10.0"
   },
   "dependencies": {
     "ejs": "^2.3.1",
@@ -38,5 +31,15 @@
     "mocha": "^2.2.0",
     "should": "^5.1.0",
     "sinon": "~1.13.0"
-  }
+  },
+  "directories": {
+    "doc": "docs",
+    "example": "examples",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thetutlage/Ouch.git"
+  },
+  "homepage": "https://github.com/thetutlage/Ouch#readme"
 }
