@@ -6,7 +6,7 @@
  * @license Licensed under MIT (https://github.com/quorrajs/Ouch/blob/master/LICENSE)
  */
 
-var stackTrace = require('stack-trace');
+var stackTrace = require('@positron/stack-trace');
 var frameModifier = require('./frame');
 
 /**

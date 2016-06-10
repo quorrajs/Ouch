@@ -1,6 +1,6 @@
 {
   "name": "ouch",
-  "version": "0.2.0-beta",
+  "version": "1.0.0",
   "description": "Javascript error handling for cool kids",
   "main": "Ouch.js",
   "scripts": {
@@ -32,7 +32,7 @@
     "ejs": "^2.3.1",
     "escape-html": "^1.0.1",
     "lodash": "^3.3.1",
-    "stack-trace": "git+https://github.com/harishanchu/node-stack-trace.git"
+    "@positron/stack-trace": "1.0.0"
   },
   "devDependencies": {
     "mocha": "^2.2.0",
