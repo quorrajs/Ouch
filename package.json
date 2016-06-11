@@ -1,6 +1,6 @@
 {
   "name": "youch",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Javascript error handling for cool kids - since ouch is no more active",
   "main": "Ouch.js",
   "scripts": {
@@ -25,7 +25,7 @@
     "ejs": "^2.3.1",
     "escape-html": "^1.0.1",
     "lodash": "^3.3.1",
-    "stack-trace": "git+https://github.com/harishanchu/node-stack-trace.git"
+    "stack-trace": "0.0.9"
   },
   "devDependencies": {
     "mocha": "^2.2.0",
