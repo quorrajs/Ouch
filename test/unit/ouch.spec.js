@@ -6,15 +6,15 @@
  * @license Licensed under MIT (https://github.com/quorrajs/Ouch/blob/master/LICENSE)
  */
 
-var sinon = require('sinon');
+var sinon = require("sinon");
 var util = require("util");
-var Ouch = require('../../Ouch');
-var Inspector = require('../../exception/Inspector');
+var Ouch = require("../../Ouch");
+var Inspector = require("../../exception/Inspector");
 
-describe('Ouch main script', function(){
+describe("Ouch main script", function(){
 
-    describe('ouch', function(){
-       it("should return a Ouch instance object with Ouch prototype methods", function(done){
+    describe("ouch", function(){
+       it.only("should return a Ouch instance object with Ouch prototype methods", function(done){
            var ouch = getOuchInstance();
            ouch.should.be.an.object;
            ouch.getHandlers.should.be.a.function;
@@ -26,7 +26,7 @@ describe('Ouch main script', function(){
        })
     });
 
-    describe('getHandlers and pushHandler', function(){
+    describe("getHandlers and pushHandler", function(){
         it("should return an empty array when handlers are not present", function(done){
             getOuchInstance().getHandlers().should.be.an.Array.empty;
             done();
