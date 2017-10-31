@@ -14,14 +14,14 @@ var Inspector = require("../../exception/Inspector");
 describe("Ouch main script", function(){
 
     describe("ouch", function(){
-       it.only("should return a Ouch instance object with Ouch prototype methods", function(done){
+       it("should return a Ouch instance object with Ouch prototype methods", function(done){
            var ouch = getOuchInstance();
-           ouch.should.be.an.object;
-           ouch.getHandlers.should.be.a.function;
-           ouch.pushHandler.should.be.a.function;
-           ouch.popHandler.should.be.a.function;
-           ouch.clearHandlers.should.be.a.function;
-           ouch.handleException.should.be.a.function;
+           ouch.should.be.type("object");
+           ouch.getHandlers.should.be.type("function");
+           ouch.pushHandler.should.be.type("function");
+           ouch.popHandler.should.be.type("function");
+           ouch.clearHandlers.should.be.type("function");
+           ouch.handleException.should.be.type("function");
            done();
        })
     });
@@ -91,10 +91,10 @@ describe("Ouch main script", function(){
 
                 var spyCall;
                 spyCall = stdHandlerInstance.handle.getCall(0);
-                spyCall.args[0].should.be.a.function;
+                spyCall.args[0].should.be.type("function");
 
                 spyCall = callbackHandler.getCall(0);
-                spyCall.args[0].should.be.a.function;
+                spyCall.args[0].should.be.type("function");
                 spyCall.args[1].should.be.equal(error);
                 spyCall.args[2].should.be.an.instanceOf(Inspector);
                 spyCall.args[3].should.be.an.instanceOf(Ouch);
