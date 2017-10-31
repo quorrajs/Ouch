@@ -26,7 +26,7 @@
     "url": "https://github.com/quorrajs/Ouch/issues"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=0.10.0 <6.0"
   },
   "dependencies": {
     "ejs": "^2.3.1",
