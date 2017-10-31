@@ -5,6 +5,7 @@
   "main": "Ouch.js",
   "scripts": {
     "test": "mocha",
+    "dev": "mocha --watch",
     "start": "node Ouch.js"
   },
   "repository": {
