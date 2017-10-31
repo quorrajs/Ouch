@@ -9,7 +9,7 @@
 var Inspector = require("../../../exception/Inspector");
 
 describe("Inspector", function(){
-    describe("#getFrames()", function(){
+    describe.only("#getFrames()", function(){
         var inspector = new Inspector(new Error("Sample exception message foo"));
         var methods = [
             'getFileName',
@@ -22,7 +22,7 @@ describe("Inspector", function(){
         ];
         it("should return array of CallSite objects of exception with methods "+methods.join(", "), function(done){
             methods.forEach(function(method){
-                inspector.getFrames()[0][method].should.be.a.function;
+                inspector.getFrames()[0][method].should.be.type("function");
             });
             done();
         });
