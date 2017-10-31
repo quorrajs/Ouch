@@ -6,10 +6,10 @@
  * @license Licensed under MIT (https://github.com/quorrajs/Ouch/blob/master/LICENSE)
  */
 
-var TemplateHelper = require('../../../util/TemplateHelper');
-var path = require('path');
+var TemplateHelper = require("../../../util/TemplateHelper");
+var path = require("path");
 
-describe('TemplateHelper', function(){
+describe("TemplateHelper", function(){
 
     var helper;
 
