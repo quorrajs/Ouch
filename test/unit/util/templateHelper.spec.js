@@ -10,7 +10,16 @@ var TemplateHelper = require('../../../util/TemplateHelper');
 var path = require('path');
 
 describe('TemplateHelper', function(){
-    var helper = new TemplateHelper();
+
+    var helper;
+
+    beforeEach(function () {
+        helper = new TemplateHelper();
+    });
+
+    afterEach(function () {
+        helper = undefined;
+    });
 
     /**
      * @covers #getVAriables()
@@ -35,7 +44,7 @@ describe('TemplateHelper', function(){
         it("should render and ejs template file.", function(done){
             var template = path.join(__dirname, "../../fixtures/template.ejs");
 
-            helper.render(template, {"name": "B<o>b"}).should.be.equal("hello-world\nMy name is B&lt;o&gt;b");
+            helper.render(template, {"name": "B<o>b"}).should.be.equal("hello-world\nMy name is B&lt;o&gt;b\n");
 
             done();
         });
