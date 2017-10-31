@@ -9,7 +9,7 @@
 var Inspector = require("../../../exception/Inspector");
 
 describe("Inspector", function(){
-    describe.only("#getFrames()", function(){
+    describe("#getFrames()", function(){
         var inspector = new Inspector(new Error("Sample exception message foo"));
         var methods = [
             "getFileName",

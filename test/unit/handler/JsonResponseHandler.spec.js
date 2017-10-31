@@ -26,7 +26,7 @@ describe("JsonResponseHandler", function(){
         it("should return json response to the callback when http request object is not set", function(done){
             var ouch = new Ouch([new JsonResponseHandler()]);
             ouch.handleException(new Error("Test error foo"), null, null, function(response){
-                response[0].should.be.json;
+                JSON.parse(response[0]); // will throw if not valid JSON
                 done();
             })
         });
