@@ -12,13 +12,13 @@ describe("Inspector", function(){
     describe.only("#getFrames()", function(){
         var inspector = new Inspector(new Error("Sample exception message foo"));
         var methods = [
-            'getFileName',
-            'getLineNumber',
-            'getFunctionName',
-            'getTypeName',
-            'getMethodName',
-            'getColumnNumber',
-            'isNative'
+            "getFileName",
+            "getLineNumber",
+            "getFunctionName",
+            "getTypeName",
+            "getMethodName",
+            "getColumnNumber",
+            "isNative"
         ];
         it("should return array of CallSite objects of exception with methods "+methods.join(", "), function(done){
             methods.forEach(function(method){
