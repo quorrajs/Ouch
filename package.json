@@ -5,6 +5,7 @@
   "main": "Ouch.js",
   "scripts": {
     "test": "mocha",
+    "dev": "mocha --watch",
     "start": "node Ouch.js"
   },
   "repository": {
@@ -26,7 +27,7 @@
     "url": "https://github.com/quorrajs/Ouch/issues"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=0.10.0 <=8.0"
   },
   "dependencies": {
     "ejs": "^2.3.1",
