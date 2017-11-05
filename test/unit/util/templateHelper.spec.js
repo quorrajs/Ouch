@@ -8,6 +8,7 @@
 
 var TemplateHelper = require("../../../util/TemplateHelper");
 var path = require("path");
+var os = require("os");
 
 describe("TemplateHelper", function(){
 
@@ -44,7 +45,7 @@ describe("TemplateHelper", function(){
         it("should render and ejs template file.", function(done){
             var template = path.join(__dirname, "../../fixtures/template.ejs");
 
-            helper.render(template, {"name": "B<o>b"}).should.be.equal("hello-world\nMy name is B&lt;o&gt;b\n");
+            helper.render(template, {"name": "B<o>b"}).should.be.equal(`hello-world${os.EOL}My name is B&lt;o&gt;b${os.EOL}`);
 
             done();
         });
