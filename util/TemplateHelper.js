@@ -16,12 +16,12 @@ var fs = require('fs');
  */
 function TemplateHelper() {
     /**
-     * An array of variables to be passed to all templates
+     * A map of variables to be passed to all templates
      *
      * @var {Object}
      * @protected
      */
-    this.__variables;
+    this.__variables = {};
 }
 
 /**
