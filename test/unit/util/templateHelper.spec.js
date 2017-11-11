@@ -44,7 +44,9 @@ describe("TemplateHelper", function(){
     describe("#render()", function(){
         it("should render and ejs template file.", function(done){
             var template = path.join(__dirname, "../../fixtures/template.ejs");
-            helper.render(template, {"name": "B<o>b"}).should.be.equal("hello-world\r\nMy name is B&lt;o&gt;b\r\n");
+            var html = helper.render(template, {"name": "B<o>b"});
+            html.replace(/\r?\n/g, "\r\n"); // fix cross platform issues
+            html.should.be.equal("hello-world\r\nMy name is B&lt;o&gt;b\r\n");
             done();
         });
     });
