@@ -69,7 +69,7 @@ function PrettyPageHandler(theme, pageTitle, editor, sendResponse, additionalScr
     /**
      * An Array of urls that represent additional javascript resources to include in the rendered template.
      *
-     * @var {Array}
+     * @var {Array} [additionalScripts]
      * @protected
      */
     this.__additionalScripts = additionalScripts || [];
