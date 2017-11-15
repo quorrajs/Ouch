@@ -17,14 +17,19 @@ describe("frame", function () {
 
     describe("#getFileLines()", function () {
         it("should return content of specified line numbers of the stack frame file source", function (done) {
-            inspector.getFrames()[0].getFileLines(8, 1).should.containEql("/** do not move this comment from this location - used for testing**/");
+            var frames = inspector.getFrames();
+            var lines = inspector.getFrames()[0].getFileLines(8, 1);
+            lines[0].replace(/(\n|\r)+$/, ""); // remove EOL character to prevent cross platform issues
+            lines.should.containEql("/** do not move this comment from this location - used for testing**/");
             done();
         });
     });
 
     describe("#getFileContents()", function () {
         it("should returns the full contents of the file for the frame", function (done) {
-            inspector.getFrames()[0].getFileContents().should.containEql(fs.readFileSync(__filename, "utf-8"));
+            var lines = inspector.getFrames()[0].getFileContents();
+            lines[0].replace(/(\n|\r)+$/, "");
+            lines.should.containEql(fs.readFileSync(__filename, "utf-8"));
             done();
         });
     });

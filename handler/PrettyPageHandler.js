@@ -27,7 +27,7 @@ var util = require('util');
  * @param sendResponse
  * @class
  */
-function PrettyPageHandler(theme, pageTitle, editor, sendResponse) {
+function PrettyPageHandler(theme, pageTitle, editor, sendResponse, additionalScripts) {
 
     PrettyPageHandler.super_.call(this);
 
@@ -65,6 +65,14 @@ function PrettyPageHandler(theme, pageTitle, editor, sendResponse) {
      * @protected
      */
     this.__sendResponse = sendResponse === undefined ? true : Boolean(sendResponse);
+
+    /**
+     * An Array of urls that represent additional javascript resources to include in the rendered template.
+     *
+     * @var {Array} [additionalScripts]
+     * @protected
+     */
+    this.__additionalScripts = additionalScripts || [];
 
     /**
      * A list of known editor strings
@@ -108,6 +116,7 @@ PrettyPageHandler.prototype.handle = function (next) {
         "stylesheet": fs.readFileSync(cssFile),
         "zepto": fs.readFileSync(zeptoFile),
         "javascript": fs.readFileSync(jsFile),
+        "additionalScripts": this.__additionalScripts,
 
         // Template paths:
         "header": this.__getResource("views/header.ejs"),

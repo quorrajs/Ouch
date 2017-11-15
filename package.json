@@ -36,6 +36,7 @@
     "@positron/stack-trace": "1.0.0"
   },
   "devDependencies": {
+    "cheerio": "^1.0.0-rc.2",
     "mocha": "^2.2.0",
     "should": "^5.1.0",
     "sinon": "~1.13.0"

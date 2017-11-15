@@ -29,5 +29,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.js"></script>
     <script><%- zepto %></script>
     <script><%- javascript %></script>
+    <% for(var i = 0; i < additionalScripts.length; i++) {%>
+      <script src="<%- additionalScripts[i] %>"></script>
+    <% } %>
   </body>
 </html>
