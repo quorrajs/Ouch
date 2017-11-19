@@ -174,8 +174,8 @@ The `PrettyPageHandler` generates a fancy, detailed error page which includes co
 ### Methods
 
 ```javascript
-// PrettyPageHandler accepts `theme`, `pageTitle`, `editor` and `sendResponse`
-// as it's arguments during instantiation.
+// PrettyPageHandler accepts `theme`, `pageTitle`, `editor`, `sendResponse` and
+// `additionalScripts' as its arguments during instantiation.
 // @param theme can be any of `blue` or `orange` which sets the PrettyPageHandler's theme
 // theme will be set to blue when no value or null is provided.
 //
@@ -190,7 +190,10 @@ The `PrettyPageHandler` generates a fancy, detailed error page which includes co
 //
 // @param sendResponse is a boolean value which will determine whether handler response
 // should be sent as http response or not. It will be set to true when no value is provided.
-__construct(theme, pageTitle, editor, sendResponse)
+//
+// @param additionalScripts is an optional array of urls that represent additional
+// javascript resources to include in the rendered template.
+__construct(theme, pageTitle, editor, sendResponse, additionalScripts)
  #=> PrettyPageHandler instance
 
 // Sets an editor to use to open referenced files, either by
@@ -229,7 +232,7 @@ The `JsonResponseHandler`, upon receiving an exception to handle, simply constru
 
 ```javascript
 // JsonResponseHandler accepts `onlyForAjaxOrJsonRequests`, `returnFrames`,
-// and `sendResponse` as it's arguments during instantiation.
+// and `sendResponse` as its arguments during instantiation.
 // @param onlyForAjaxOrJsonRequests is boolean which determines
 // whether to process errors of all request types or whether to process
 // errors from Ajax/WantsJson type request. It is set to false by default.

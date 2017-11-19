@@ -23,7 +23,7 @@ web projects, but at heart it's a simple yet powerful stacked error handling sys
 
 [Orange theme](https://quorrajs.github.io/Ouch/demo/orange.html)
 
-##Installation
+## Installation
 
 The source is available for download from [GitHub](https://github.com/quorrajs/Ouch). Alternatively, you
 can install using Node Package Manager (npm):

@@ -25,6 +25,7 @@ var util = require('util');
  * @param pageTitle
  * @param editor
  * @param sendResponse
+ * @param [additionalScripts]
  * @class
  */
 function PrettyPageHandler(theme, pageTitle, editor, sendResponse, additionalScripts) {
@@ -69,7 +70,7 @@ function PrettyPageHandler(theme, pageTitle, editor, sendResponse, additionalScr
     /**
      * An Array of urls that represent additional javascript resources to include in the rendered template.
      *
-     * @var {Array} [additionalScripts]
+     * @type {Array}
      * @protected
      */
     this.__additionalScripts = additionalScripts || [];
