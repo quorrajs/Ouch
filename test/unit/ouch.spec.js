@@ -33,7 +33,7 @@ describe("Ouch main script", function(){
         });
 
         it("should return a non empty array when handlers are present", function(done){
-            getOuchInstance().pushHandler(function(){}).getHandlers().should.be.an.Array.length(1);
+            getOuchInstance().pushHandler(function(){}).getHandlers().should.be.instanceof(Array).and.have.lengthOf(1);
             done();
         })
 
