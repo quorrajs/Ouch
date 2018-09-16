@@ -27,7 +27,7 @@
     "url": "https://github.com/quorrajs/Ouch/issues"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=4.0.0"
   },
   "dependencies": {
     "@positron/stack-trace": "1.0.0",
