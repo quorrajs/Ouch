@@ -52,8 +52,12 @@ Inspector.prototype.getFrames = function () {
  * @returns {*}
  */
 Inspector.prototype.getCode = function () {
-    return this.__code ? this.__code : (!this.__exception.status ||
-    this.__exception.status < 400 ? 500 : (this.__exception.status || 500));
+    var _statusCode = this.__exception.status || this.__exception.statusCode;
+    return this.__code
+        ? this.__code
+        : !_statusCode || _statusCode < 400
+            ? 500
+            : _statusCode || 500;
 };
 
 /**
