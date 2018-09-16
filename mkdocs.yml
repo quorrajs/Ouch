@@ -1,4 +1,4 @@
 site_name: Ouch Docs
-pages:
-- [index.md, Home]
-- [api-docs.md, API Docs]
+nav:
+- Home: index.md
+- API Docs: api-docs.md
