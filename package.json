@@ -1,6 +1,6 @@
 {
   "name": "ouch",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Javascript error handling for cool kids",
   "main": "Ouch.js",
   "scripts": {
