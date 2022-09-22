@@ -26,9 +26,10 @@ var util = require('util');
  * @param editor
  * @param sendResponse
  * @param [additionalScripts]
+ * @param filterData
  * @class
  */
-function PrettyPageHandler(theme, pageTitle, editor, sendResponse, additionalScripts) {
+function PrettyPageHandler(theme, pageTitle, editor, sendResponse, additionalScripts, filterData) {
 
     PrettyPageHandler.super_.call(this);
 
@@ -74,6 +75,14 @@ function PrettyPageHandler(theme, pageTitle, editor, sendResponse, additionalScr
      * @protected
      */
     this.__additionalScripts = additionalScripts || [];
+
+    /**
+     * A callback that gets passed the data to be rendered and can be used to e.g. remove ENV variables.
+     *
+     * @type {function}
+     * @protected
+     */
+    this.__filterData = filterData;
 
     /**
      * A list of known editor strings
@@ -147,6 +156,10 @@ PrettyPageHandler.prototype.handle = function (next) {
             "Environment Variables": process.env
         }
     };
+
+    if (_.isFunction(this.__filterData)) {
+        data = this.__filterData.call(null, data);
+    }
 
     helper.setVariables(data);
 
